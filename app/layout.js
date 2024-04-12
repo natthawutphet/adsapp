@@ -1,37 +1,35 @@
-import { useEffect, useState } from 'react';
-import Head from 'next/head';
+import { Inter } from "next/font/google";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import Script from 'next/script';
-import Nav from './components/Nav';
-import Footer from './components/Footer';
+import "./globals.css";
+import "./style.css";
+import Nav from "./components/Nav";
+import Footer from "./components/Footer";
+
+const inter = Inter({ subsets: ["latin"] });
+
 
 export default function RootLayout({ children }) {
-  const [fontLoaded, setFontLoaded] = useState(false);
 
-  useEffect(() => {
-    const inter = new FontFace('Inter', 'url(https://rsms.me/inter/font-files/Inter-Regular.woff2)');
-    inter.load().then(() => {
-      document.fonts.add(inter);
-      setFontLoaded(true);
-    });
-  }, []);
 
   return (
-    <>
-      <Head>
-        <title>รับทำโฆษณาออนไลน์สายเทา</title>
-        <meta name="description" content="รับทำโฆษณาออนไลน์สายเทา Google, YouTube, Facebook" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="adsmanager" />
-        <meta property="og:title" content="รับทำโฆษณาออนไลน์สายเทา" />
-        <meta property="og:description" content="รับทำโฆษณาออนไลน์สายเทา Google, YouTube, Facebook" />
-        <meta property="og:image" content="https://myfbad.com/img/ads.jpg" />
-        <meta name="twitter:image" content="https://myfbad.com/img/ads.jpg" />
-        <link rel="canonical" href="https://myfbad.com" />
-      </Head>
-      <body className={fontLoaded ? 'Inter' : ''}>
-        <Nav />
-        {children}
-        <Footer />
+    <html lang="en">
+   <meta name="google-site-verification" content="RUGTR3VbcF6w2Ejs1n1-0CThkzCgXGNxswXwfbO0D0s" />
+   <Script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "adsmanager",
+              "url": "https://myfbad.com/",
+              "Image": "https://myfbad.com/img/ads.jpg",
+              "sameAs": [
+                "https://myfbad.com/favicon.ico"
+              ]
+            }
+          `}
+        </Script>
         <Script src="https://www.googletagmanager.com/gtag/js?id=AW-16529044379" strategy="beforeInteractive" />
         <Script strategy="afterInteractive">
           {`
@@ -41,8 +39,24 @@ export default function RootLayout({ children }) {
             gtag('config', 'AW-16529044379');
           `}
         </Script>
-        <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" />
-      </body>
-    </>
+   <meta name="robots" content="index, follow" />
+
+<meta name="author" content="adsmanager" />
+
+<meta property="og:title" content="รับทำโฆษณาออนไลน์สายเทา" />
+<meta property="og:description" content="รับทำโฆษณาออนไลน์สายเทา Google, YouTube, Facebook" />
+<link rel="canonical" href='https://myfbad.com' />
+<meta name="twitter:image" content="https://myfbad.com/img/ads.jpg" />
+      <meta property="og:image" content="https://myfbad.com/img/ads.jpg" />
+      <body className={inter.className}>
+        <Nav/>
+        {children}
+       
+     
+        <Footer/>
+        </body>
+        <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></Script>
+
+    </html>
   );
 }
